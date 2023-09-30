@@ -10,12 +10,13 @@ int main(int argc, char **argv) {
     char sendline[512];
     char recvline[512];
 
- if (argc != 2) printf("usage tcpcli <ipaddress>\n");
+ if (argc != 2)
+  printf("usage tcpcli <ipaddress>\n");
 sockfd = socket(AF_INET, SOCK_STREAM, 0);
 bzero(&servaddr, sizeof(servaddr));
 servaddr.sin_family = AF_INET;
 servaddr.sin_port = htons(6000);
-servaddr.sin_addr.s_addr = inet_addr(argv[1]);
+servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr));
 fgets(sendline, 512, stdin);
 int n = strlen(sendline);
@@ -29,6 +30,9 @@ exit(0);
 
 
 }
+
+
+
 
 
 //server
